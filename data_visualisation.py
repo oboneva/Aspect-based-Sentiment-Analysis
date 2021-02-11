@@ -15,9 +15,9 @@ def plot(aspect_groups, aspect_group_polarities):
     df["neutral"] = neus
     df["positive"] = poss
 
-    likert_colors = ['indianred', 'gainsboro', 'seagreen']
+    colors = ['indianred', 'gainsboro', 'seagreen']
     ax = df.plot.barh(stacked=True, figsize=(17, 7),
-                      color=likert_colors)
+                      color=colors)
 
     for rect in ax.patches:
         height = rect.get_height()
