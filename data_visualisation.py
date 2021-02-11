@@ -7,9 +7,9 @@ def plot(aspect_groups, aspect_group_polarities):
 
     polarities = aspect_group_polarities.values()
 
-    negs = [item["neg"] for item in polarities]
-    neus = [item["neu"] for item in polarities]
-    poss = [item["pos"] for item in polarities]
+    negs = [item["neg"]*100 for item in polarities]
+    neus = [item["neu"]*100 for item in polarities]
+    poss = [item["pos"]*100 for item in polarities]
 
     df["negative"] = negs
     df["neutral"] = neus
