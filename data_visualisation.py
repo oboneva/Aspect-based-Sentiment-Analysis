@@ -2,8 +2,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
-def plot(aspect_groups, aspect_group_polarities):
-    df = pd.DataFrame(index=aspect_groups)
+def plot(aspect_groups: list[list[str]], aspect_group_polarities):
+    aspect_group_strings = [",".join(group) for group in aspect_groups]
+    df = pd.DataFrame(index=aspect_group_strings)
 
     polarities = aspect_group_polarities.values()
 

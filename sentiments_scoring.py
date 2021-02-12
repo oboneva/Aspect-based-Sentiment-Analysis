@@ -30,7 +30,7 @@ def score_by_pairs(review: str, aspects: list[str], aspect_opinion_pairs, analyz
     neutral_scores = []
     compound_scores = []
 
-    individual_pair_weight = 0.25
+    individual_pair_weight = 0.5
     overall_weight = 1 - individual_pair_weight
 
     for aspect in aspects:

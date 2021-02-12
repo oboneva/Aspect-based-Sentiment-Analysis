@@ -54,8 +54,7 @@ def experiment_rules():
 
     means = review_aspects_polarity_mean(df, len(aspect_groups))
 
-    aspect_group_strings = [",".join(group) for group in aspect_groups]
-    plot(aspect_group_strings, means)
+    plot(aspect_groups, means)
 
 
 def experiment_naive():
@@ -78,8 +77,7 @@ def experiment_naive():
 
     means = review_aspects_polarity_mean(df, len(aspect_groups))
 
-    aspect_group_strings = [",".join(group) for group in aspect_groups]
-    plot(aspect_group_strings, means)
+    plot(aspect_groups, means)
 
 
 def main():
