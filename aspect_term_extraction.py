@@ -19,7 +19,7 @@ def aspect_term_extraction_by_pos_tagging(df: pd.DataFrame, text_column_name: st
     return aspects
 
 
-def extract_opinion_modifiers(token, opinion):
+def extract_opinion_modifiers(token, opinion: str) -> str:
     for child in token.children:
         if(child.dep_ == "advmod"):
             opinion = child.text + " " + opinion
@@ -31,7 +31,7 @@ def extract_opinion_modifiers(token, opinion):
     return opinion
 
 
-def adjective_noun_rule(review):
+def adjective_noun_rule(review: str):
     doc = nlp(review)
     aspect_opinion_pairs = []
 
@@ -51,7 +51,7 @@ def adjective_noun_rule(review):
     return aspect_opinion_pairs
 
 
-def noun_adjective_rule(review):
+def noun_adjective_rule(review: str):
     doc = nlp(review)
     aspect_opinion_pairs = []
 
@@ -61,7 +61,7 @@ def noun_adjective_rule(review):
 
         if token.dep_ == "ROOT" or token.dep_ == "ccomp" or token.dep_ == "conj":
             for child in token.children:
-                if child.dep_ == "nsubj":
+                if child.dep_ == "nsubj" and not child.is_stop:
                     aspect = child.text
 
                 if child.dep_ == "acomp":

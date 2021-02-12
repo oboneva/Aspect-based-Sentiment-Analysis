@@ -8,6 +8,6 @@ def cluster_aspects(df, aspects: list[str], clusters_count: int):
     df["aspect"] = aspects
     df["cluster"] = km.labels_
 
-    aspect_groups = df.groupby(['cluster'])['aspect'].apply(','.join)
+    aspect_groups = df.groupby(['cluster'])['aspect'].apply(list)
 
     return aspect_groups
