@@ -1,7 +1,7 @@
 from sklearn.cluster import KMeans
 
 
-def cluster_aspects(df, aspects: list[str], clusters_count: int):
+def cluster_aspects(df, aspects: list[str], clusters_count: int) -> list[list[str]]:
     km = KMeans(n_clusters=clusters_count)
     km = km.fit(df)
 

@@ -20,11 +20,11 @@ def df_sentiments_single_aspect_per_review(df, text_column_name: str, aspect_clu
     return df
 
 
-def aspect_pairs(aspect, aspect_opinion_pairs):
+def aspect_pairs(aspect: str, aspect_opinion_pairs: list[tuple[str, str]]):
     return [term for term, _ in aspect_opinion_pairs if term in aspect]
 
 
-def score_by_pairs(review: str, aspects: list[str], aspect_opinion_pairs, analyzer):
+def score_by_pairs(review: str, aspects: list[str], aspect_opinion_pairs: list[tuple[str, str]], analyzer):
     negative_scores = []
     positive_scores = []
     neutral_scores = []
@@ -56,7 +56,8 @@ def score_by_pairs(review: str, aspects: list[str], aspect_opinion_pairs, analyz
             'pos': mean(positive_scores), 'compound': mean(compound_scores)}
 
 
-def df_sentiments_by_aspect_opinion_pairs(df, text_column_name: str, aspect_opinion_pairs,
+def df_sentiments_by_aspect_opinion_pairs(df, text_column_name: str,
+                                          aspect_opinion_pairs: list[tuple[str, str]],
                                           aspect_clusters: list[list[str]]):
     analyzer = SentimentIntensityAnalyzer()
 

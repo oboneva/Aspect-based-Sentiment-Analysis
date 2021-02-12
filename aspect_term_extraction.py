@@ -74,7 +74,7 @@ def noun_adjective_rule(review: str):
     return aspect_opinion_pairs
 
 
-def aspect_term_extraction_by_rules(df: pd.DataFrame, text_column_name: str) -> list[str]:
+def aspect_term_extraction_by_rules(df: pd.DataFrame, text_column_name: str) -> list[tuple[str, str]]:
     aspects = []
 
     for review in df[text_column_name]:
