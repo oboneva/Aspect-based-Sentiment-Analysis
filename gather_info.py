@@ -9,6 +9,10 @@ def review_aspects_polarity_mean(df, cluster_count: int) -> dict[str, float]:
         neus = df[f'cluster-{i}'].apply(lambda b: 0 if b is None else b["neu"])
         poss = df[f'cluster-{i}'].apply(lambda b: 0 if b is None else b["pos"])
 
+        negs[negs != 0]
+        neus[neus != 0]
+        poss[poss != 0]
+
         means[f'cluster-{i}'] = {"neg": mean(negs),
                                  "neu": mean(neus), "pos": mean(poss)}
 

@@ -38,7 +38,7 @@ def plot(aspect_groups: list[list[str]], aspect_group_polarities):
     ax.legend(loc='upper right', borderaxespad=0.)
     ax.set_ylabel("Aspect groups", fontsize=16)
     ax.set_xlabel("Sentiments", fontsize=16)
-    ax.get_xaxis().set_visible(False)
+    plt.tick_params(bottom=False)
 
     plt.box(False)
     plt.tight_layout(w_pad=3.5)

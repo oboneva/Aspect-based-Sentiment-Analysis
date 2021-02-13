@@ -3,11 +3,24 @@ from statistics import mean
 
 
 def score(review: str, aspects: list[str], analyzer):
+    negative_scores = []
+    positive_scores = []
+    neutral_scores = []
+    compound_scores = []
+
     for aspect in aspects:
         if aspect in review:
-            return analyzer.polarity_scores(review)
-        else:
-            return {'neg': 0, 'neu': 0, 'pos': 0, 'compound': 0}
+            score = analyzer.polarity_scores(review)
+            negative_scores.append(score["neg"])
+            positive_scores.append(score["pos"])
+            neutral_scores.append(score["neu"])
+            compound_scores.append(score["compound"])
+
+    if len(negative_scores) == 0:
+        return {'neg': 0, 'neu': 0, 'pos': 0, 'compound': 0}
+
+    return {'neg': mean(negative_scores), 'neu': mean(neutral_scores),
+            'pos': mean(positive_scores), 'compound': mean(compound_scores)}
 
 
 def df_sentiments_single_aspect_per_review(df, text_column_name: str, aspect_clusters: list[list[str]]):
