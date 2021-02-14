@@ -1,4 +1,5 @@
 import pandas as pd
+import sys
 
 from aspect_term_extraction import aspect_term_extraction_by_pos_tagging, aspect_term_extraction_by_rules
 from sentiments_scoring import df_sentiments_single_aspect_per_review, df_sentiments_by_aspect_opinion_pairs
@@ -7,6 +8,7 @@ from aspects_filtering import filter_aspects
 from aspects_to_embeddings import word2vec
 from group_aspects import cluster_aspects
 from data_visualisation import plot
+from data_preprocess import clean_reviews
 
 # nltk.download('punkt')
 # nltk.download('averaged_perceptron_tagger')
@@ -32,8 +34,8 @@ def remove_duplicates(aspects: list[str]) -> list[str]:
     return aspects
 
 
-def experiment_rules():
-    df = pd.read_csv("acer-reviews.csv")
+def experiment_rules(filename: str):
+    df = pd.read_csv(filename)
 
     aspect_opinion_pairs = aspect_term_extraction_by_rules(df, REVIEW_COLUMN)
     aspects = [aspect for aspect, _ in aspect_opinion_pairs]
@@ -57,8 +59,8 @@ def experiment_rules():
     plot(aspect_groups, means)
 
 
-def experiment_naive():
-    df = pd.read_csv("acer-reviews.csv")
+def experiment_naive(filename: str):
+    df = pd.read_csv(filename)
 
     aspects = aspect_term_extraction_by_pos_tagging(df, REVIEW_COLUMN)
     aspects = remove_duplicates(aspects)
@@ -81,8 +83,11 @@ def experiment_naive():
 
 
 def main():
-    experiment_naive()
-    experiment_rules()
+    filename = sys.argv[1]
+
+    clean_reviews(filename, REVIEW_COLUMN)
+    experiment_naive(f"{filename}.csv")
+    experiment_rules(f"{filename}.csv")
 
 
 if __name__ == "__main__":
